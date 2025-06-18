@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import com.Auth.Request.AuthResponse;
+import com.Auth.Request.RegisterRequest;
+import com.Auth.Request.LoginRequest;
 
 @RestController
 @RequestMapping("/auth")

@@ -1,0 +1,75 @@
+{
+    "info": {
+      "_postman_id": "b6e5a3aa-d0b6-44f7-baae-63f6ef0cc91e",
+      "name": "Ofertaya Auth API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Login",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"usuario\",\n  \"password\": \"contraseña\"\n}"
+          },
+          "url": {
+            "raw": "http://localhost:8080/auth/login",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["auth", "login"]
+          }
+        }
+      },
+      {
+        "name": "Register",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"nuevoUsuario\",\n  \"password\": \"123456\",\n  \"email\": \"usuario@example.com\"\n}"
+          },
+          "url": {
+            "raw": "http://localhost:8080/auth/register",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["auth", "register"]
+          }
+        }
+      },
+      {
+        "name": "Validate Token",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:8080/auth/validate",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8080",
+            "path": ["auth", "validate"]
+          }
+        }
+      }
+    ]
+  }
+  
