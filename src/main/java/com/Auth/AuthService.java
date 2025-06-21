@@ -11,7 +11,7 @@ import com.Auth.User.UserRepository;
 import com.Auth.Request.AuthResponse;
 import com.Auth.Request.RegisterRequest;
 import com.Auth.Request.LoginRequest;
-import com.Auth.Exception.EmailAlreadyUsedException;
+import com.Auth.Exceptions.EmailAlreadyUsedException;
 //import com.Auth.Jwt.JwtService;
 
 import lombok.RequiredArgsConstructor;

@@ -28,6 +28,8 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<jacoco.version>0.8.11</jacoco.version>
+		<jacoco.minimum.coverage>0.65</jacoco.minimum.coverage>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -78,14 +80,6 @@
 			<version>42.7.3</version>
 		</dependency>
 
-		<!-- Lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.30</version> <!-- Ajusta a la última si es necesario -->
-			<scope>provided</scope>
-		</dependency>
-
 		<!-- JWT -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -103,6 +97,11 @@
 			<artifactId>jjwt-jackson</artifactId> <!-- o jjwt-gson -->
 			<version>0.11.5</version>
 		<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -134,6 +133,68 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- Plugin de JaCoCo para cobertura de código -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<executions>
+					<!-- Ejecución 1: Preparar el agente de JaCoCo -->
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<destFile>${project.build.directory}/jacoco.exec</destFile>
+						</configuration>
+					</execution>
+					<!-- Ejecución 2: Generar reporte de cobertura -->
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<formats>
+								<format>HTML</format>
+								<format>XML</format>
+							</formats>
+							<outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
+							<excludes>
+								<exclude>com/Auth/Config/*</exclude>
+								<exclude>com/Auth/AuthApplication.class</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+					<!-- Ejecución 3: Verificar umbral mínimo de cobertura -->
+					<execution>
+						<id>check</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<rule>
+									<element>BUNDLE</element>
+									<excludes>
+										<exclude>com.Auth.Config.*</exclude>
+										<exclude>com.Auth.AuthApplication</exclude>
+									</excludes>
+									<limits>
+										<limit>
+											<counter>LINE</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.65</minimum>
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
