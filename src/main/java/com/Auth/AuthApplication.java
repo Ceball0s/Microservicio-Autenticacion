@@ -15,17 +15,17 @@ public class AuthApplication {
 
     public static void main(String[] args) {
         // Configura Dotenv con manejo seguro de valores nulos
-        Dotenv dotenv = Dotenv.configure()
-                .directory("./") // Busca en el directorio raíz del proyecto
-                .ignoreIfMissing() // No lanza excepción si no encuentra el archivo
-                .load();
+        // Dotenv dotenv = Dotenv.configure()
+        //         .directory("./") // Busca en el directorio raíz del proyecto
+        //         .ignoreIfMissing() // No lanza excepción si no encuentra el archivo
+        //         .load();
 
-        // Establece propiedades con valores por defecto si es necesario
-        setPropertySafe(dotenv, "DB_URL", "jdbc:postgresql://localhost:5432/ofertaya");
-        setPropertySafe(dotenv, "DB_USERNAME", "postgres");
-        setPropertySafe(dotenv, "DB_PASSWORD", "postgres");
-        setPropertySafe(dotenv, "JWT_SECRET_KEY", "");
-        setPropertySafe(dotenv, "JWT_EXPIRATION", "86400000"); // 24 horas
+        // // Establece propiedades con valores por defecto si es necesario
+        // setPropertySafe(dotenv, "DB_URL", "jdbc:postgresql://db_autenticacion:5432/ofertaya");
+        // setPropertySafe(dotenv, "DB_USERNAME", "postgres");
+        // setPropertySafe(dotenv, "DB_PASSWORD", "postgres");
+        // setPropertySafe(dotenv, "JWT_SECRET_KEY", "a-string-secret-at-least-256-bits-long");
+        // setPropertySafe(dotenv, "JWT_EXPIRATION", "86400000"); // 24 horas
 
         SpringApplication.run(AuthApplication.class, args);
     }
