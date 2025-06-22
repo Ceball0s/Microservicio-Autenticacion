@@ -16,7 +16,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import io.github.cdimascio.dotenv.Dotenv;
+// import io.github.cdimascio.dotenv.Dotenv;
 
 import org.springframework.beans.factory.annotation.Value;
 
@@ -24,10 +24,10 @@ import org.springframework.beans.factory.annotation.Value;
 @Service
 public class JwtService {
 
-     @Value("${JWT_SECRET_KEY}")
+    @Value("${JWT_SECRET_KEY:univalle-clave-secreta}")
     private String secretKey;
 
-    @Value("${JWT_EXPIRATION}")
+    @Value("${JWT_EXPIRATION_MS:86400000}") // 24 hours in milliseconds
     private long expiration;
 
     public String extractUsername(String token) {
