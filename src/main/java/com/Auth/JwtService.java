@@ -24,7 +24,7 @@ import org.springframework.beans.factory.annotation.Value;
 @Service
 public class JwtService {
 
-    @Value("${JWT_SECRET_KEY:univalle-clave-secreta}")
+    @Value("${JWT_SECRET_KEY:univalleClaveSecreta}")
     private String secretKey;
 
     @Value("${JWT_EXPIRATION_MS:86400000}") // 24 hours in milliseconds
