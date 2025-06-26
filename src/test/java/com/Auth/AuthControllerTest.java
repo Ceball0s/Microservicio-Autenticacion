@@ -44,7 +44,7 @@ class AuthControllerTest {
         AuthResponse authResponse = AuthResponse.builder().token("test-token").build();
         when(authService.login(any(LoginRequest.class))).thenReturn(authResponse);
 
-        mockMvc.perform(post("/auth/login")
+        mockMvc.perform(post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(loginRequest)))
                 .andExpect(status().isOk())
@@ -57,7 +57,7 @@ class AuthControllerTest {
         AuthResponse authResponse = AuthResponse.builder().token("test-token").build();
         when(authService.register(any(RegisterRequest.class))).thenReturn(authResponse);
 
-        mockMvc.perform(post("/auth/register")
+        mockMvc.perform(post("/api/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(registerRequest)))
                 .andExpect(status().isOk())

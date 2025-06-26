@@ -13,7 +13,7 @@ import com.Auth.Request.RegisterRequest;
 import com.Auth.Request.LoginRequest;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 @CrossOrigin(origins = {"http://localhost:5173"})
 public class AuthController {
